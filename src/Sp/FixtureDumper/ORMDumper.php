@@ -26,7 +26,7 @@ class ORMDumper extends AbstractDumper
                 continue;
             }
 
-            if($class->getName === 'FOS\UserBundle\Model\Group')
+            if($class->getName() === 'FOS\UserBundle\Model\Group')
             {
                 ld('OUT');
                 continue;
