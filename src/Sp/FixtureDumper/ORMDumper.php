@@ -26,14 +26,13 @@ class ORMDumper extends AbstractDumper
                 continue;
             }
 
-            var_dump($class);
-            die();
-
             $calc->addClass($class);
 
             // $class before its parents
             foreach ($class->parentClasses as $parentClass) {
                 $parentClass = $this->objectManager->getClassMetadata($parentClass);
+
+                ld($parentClass);
 
                 if (!$calc->hasClass($parentClass->name)) {
                     $calc->addClass($parentClass);
@@ -41,6 +40,8 @@ class ORMDumper extends AbstractDumper
 
                 $calc->addDependency($class, $parentClass);
             }
+
+            die();
 
             foreach ($class->associationMappings as $assoc) {
                 if ($assoc['isOwningSide']) {
