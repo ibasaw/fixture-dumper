@@ -26,7 +26,7 @@ class ORMDumper extends AbstractDumper
                 continue;
             }
 
-            ld($class->getTableName(), $class->getClassName());
+            ld($class->getTableName());
 
             if($class->getTableName() === 'Group')
             {
