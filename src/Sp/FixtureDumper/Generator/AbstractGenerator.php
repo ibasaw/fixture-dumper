@@ -298,6 +298,8 @@ abstract class AbstractGenerator
      */
     protected function readProperty($object, $property)
     {
+        $property = str_replace('_', null, $property);
+
         $camelProp = ucfirst($property);
         $getter = 'get'.$camelProp;
         $isser = 'is'.$camelProp;
