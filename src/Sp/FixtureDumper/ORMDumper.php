@@ -26,6 +26,9 @@ class ORMDumper extends AbstractDumper
                 continue;
             }
 
+            var_dump($class);
+            die();
+
             $calc->addClass($class);
 
             // $class before its parents
