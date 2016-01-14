@@ -32,8 +32,6 @@ class ORMDumper extends AbstractDumper
             foreach ($class->parentClasses as $parentClass) {
                 $parentClass = $this->objectManager->getClassMetadata($parentClass);
 
-                ld($parentClass);
-
                 if (!$calc->hasClass($parentClass->name)) {
                     $calc->addClass($parentClass);
                 }
@@ -41,9 +39,10 @@ class ORMDumper extends AbstractDumper
                 $calc->addDependency($class, $parentClass);
             }
 
-            die();
-
             foreach ($class->associationMappings as $assoc) {
+
+                ld($assoc);
+
                 if ($assoc['isOwningSide']) {
                     $targetClass = $this->objectManager->getClassMetadata($assoc['targetEntity']);
 
@@ -66,6 +65,7 @@ class ORMDumper extends AbstractDumper
                     }
                 }
             }
+            die();
         }
 
         return $calc->getCommitOrder();
