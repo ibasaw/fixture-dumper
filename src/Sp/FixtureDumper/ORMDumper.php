@@ -20,12 +20,15 @@ class ORMDumper extends AbstractDumper
 {
     protected function getDumpOrder(array $classes)
     {
-        ld($classes);
-        die();
-
         $calc = new CommitOrderCalculator();
         foreach ($classes as $class) {
             if (!$class->getReflectionClass()->isInstantiable() || $class->isMappedSuperclass) {
+                continue;
+            }
+
+            if($class->getName === 'FOS\UserBundle\Model\Group')
+            {
+                ld('OUT');
                 continue;
             }
 
