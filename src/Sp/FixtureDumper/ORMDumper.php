@@ -20,6 +20,9 @@ class ORMDumper extends AbstractDumper
 {
     protected function getDumpOrder(array $classes)
     {
+        ld($classes);
+        die();
+
         $calc = new CommitOrderCalculator();
         foreach ($classes as $class) {
             if (!$class->getReflectionClass()->isInstantiable() || $class->isMappedSuperclass) {
@@ -40,9 +43,6 @@ class ORMDumper extends AbstractDumper
             }
 
             foreach ($class->associationMappings as $assoc) {
-
-                ld($assoc);
-
                 if ($assoc['isOwningSide']) {
                     $targetClass = $this->objectManager->getClassMetadata($assoc['targetEntity']);
 
@@ -65,7 +65,6 @@ class ORMDumper extends AbstractDumper
                     }
                 }
             }
-            die();
         }
 
         return $calc->getCommitOrder();
